@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_test"
+    app:startDestination="@id/homeTestFragment">
+
+    <fragment
+        android:id="@+id/homeTestFragment"
+        android:name="com.applemango.memodemo.test.HomeTestFragment"
+        android:label="fragment_home_test"
+        tools:layout="@layout/fragment_home_test" >
+        <action
+            android:id="@+id/action_homeTestFragment_to_testNextFragment"
+            app:destination="@id/testNextFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/testNextFragment"
+        android:name="com.applemango.memodemo.test.TestNextFragment"
+        android:label="fragment_test_next"
+        tools:layout="@layout/fragment_test_next" />
+</navigation>

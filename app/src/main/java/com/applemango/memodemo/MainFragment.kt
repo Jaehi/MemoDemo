@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
 import com.applemango.memodemo.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -20,6 +21,7 @@ class MainFragment : Fragment() {
     ): View? {
         onClick()
         return bind.root
+
     }
 
     private fun onClick(){
