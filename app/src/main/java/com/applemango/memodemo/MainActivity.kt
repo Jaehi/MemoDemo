@@ -3,6 +3,7 @@ package com.applemango.memodemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.activity.viewModels
 import com.applemango.memodemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -2,6 +2,9 @@ package com.applemango.memodemo
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -47,5 +50,7 @@ class ListViewModel(
     fun getValue(): MemoDataBase? {
         return MemoDataBase.getInstance(myApplication)
     }
+
+
 
 }

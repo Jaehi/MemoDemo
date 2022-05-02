@@ -6,11 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.applemango.memodemo.databinding.MemoItemBinding
 
-class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title:String, content: String, id: Int) -> Unit,val onClick : (position : Int) -> Unit
+class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title:String, content: String, id: Int) -> Unit,
+                  val onClick : (position : Int) -> Unit
 ) : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
-
-
-
 
     inner class ViewHolder(private val bind: MemoItemBinding) : RecyclerView.ViewHolder(bind.root) {
 

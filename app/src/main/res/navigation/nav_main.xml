@@ -34,5 +34,9 @@
         android:id="@+id/resultFragment"
         android:name="com.applemango.memodemo.ResultFragment"
         tools:layout="@layout/fragment_result"
-        />
+        >
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 </navigation>

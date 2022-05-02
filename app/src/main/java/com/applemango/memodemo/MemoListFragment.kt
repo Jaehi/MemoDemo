@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applemango.memodemo.databinding.FragmentMemoListBinding
+import java.lang.NullPointerException
 
 class MemoListFragment : androidx.fragment.app.Fragment() {
 
@@ -33,10 +35,12 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
                 viewModel.delete(title, content, id)
             },
                     onClick = { position ->
-                        val bundle = bundleOf("position" to position)
-                        val resultFragment = ResultFragment()
-                        resultFragment.arguments = bundle
-                        findNavController().navigate(R.id.action_memoListFragment_to_resultFragment)
+                        //safeargs
+                        val bundle = Bundle()
+                        bundle.putString("title", viewModel.memoList.value?.get(position)?.title)
+                        bundle.putString("contents",viewModel.memoList.value?.get(position)?.content)
+
+                        findNavController().navigate(R.id.action_memoListFragment_to_resultFragment, bundle)
                     }
             )
         })
@@ -50,6 +54,5 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
             findNavController().popBackStack()
         }
     }
-
 
 }

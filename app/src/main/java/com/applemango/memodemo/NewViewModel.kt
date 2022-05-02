@@ -1,6 +1,8 @@
 package com.applemango.memodemo
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,6 +18,7 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
     var contents = ""
 
     fun insert() {
+
         viewModelScope.launch(Dispatchers.IO) {
             when {
                 title.isEmpty() -> event(ActivityEvents.Something("제목이 비엇숨"))
@@ -25,6 +28,7 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
                 db.MemoDao().insert(MemoData(title, contents))
                 title = ""
                 contents = ""
+
             }
         }
     }

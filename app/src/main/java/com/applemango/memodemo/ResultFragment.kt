@@ -1,10 +1,13 @@
 package com.applemango.memodemo
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.applemango.memodemo.databinding.FragmentResultBinding
 
 class ResultFragment : Fragment() {
@@ -16,7 +19,21 @@ class ResultFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.fragment_result, container, false)
+        var title = arguments?.getString("title")
+        var contents = arguments?.getString("contents")
+
+        if (title != null && contents != null) {
+            Log.d("SC","${title}.${contents}")
+        }else{
+            Log.d("ERROR","ERROR")
+        }
+
+        bind.etTitle.text = title
+        bind.etContents.text = contents
+
+        return bind.root
     }
+
+
 
 }

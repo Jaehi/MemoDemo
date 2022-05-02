@@ -10,13 +10,12 @@ interface MemoDao {
     @Query("SELECT * FROM table_memo")
     fun getData():LiveData<List<MemoData>>
 
+    @Query("SELECT * FROM table_memo")
+    fun getListData() : List<MemoData>
+
     @Insert
     fun insert(memoData: MemoData)
 
-    @Update
-    fun update(memoData: MemoData)
-
     @Delete
     fun delete(memoData: MemoData)
-
 }
