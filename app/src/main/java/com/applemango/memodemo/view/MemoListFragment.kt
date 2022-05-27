@@ -1,17 +1,17 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.view
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.applemango.memodemo.adapter.MemoAdapter
+import com.applemango.memodemo.R
 import com.applemango.memodemo.databinding.FragmentMemoListBinding
-import java.lang.NullPointerException
+import com.applemango.memodemo.viewmodel.ListViewModel
 
 class MemoListFragment : androidx.fragment.app.Fragment() {
 
@@ -45,14 +45,8 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
             )
         })
 
-        initUI()
         return bind.root
     }
 
-    private fun initUI() {
-        bind.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
 }

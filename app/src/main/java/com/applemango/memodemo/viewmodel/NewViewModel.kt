@@ -1,12 +1,12 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.viewmodel
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
+import com.applemango.memodemo.data.MemoData
+import com.applemango.memodemo.data.MemoDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -30,6 +30,7 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
                 contents = ""
 
             }
+
         }
     }
 

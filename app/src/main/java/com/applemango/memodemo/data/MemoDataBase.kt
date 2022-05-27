@@ -1,4 +1,4 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.data
 
 import android.content.Context
 import androidx.room.Database
@@ -13,8 +13,8 @@ abstract class MemoDataBase : RoomDatabase() {
     companion object{
         private var instance : MemoDataBase? = null
         @Synchronized
-        fun getInstance(context: Context):MemoDataBase?{
-            if(instance==null){
+        fun getInstance(context: Context): MemoDataBase?{
+            if(instance ==null){
                 instance = Room.databaseBuilder(
                     context.applicationContext,
                     MemoDataBase::class.java,

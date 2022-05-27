@@ -1,13 +1,12 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.room.Room
+import com.applemango.memodemo.R
 import com.applemango.memodemo.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {

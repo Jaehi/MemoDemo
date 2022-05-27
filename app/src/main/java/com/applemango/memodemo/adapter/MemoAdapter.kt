@@ -1,9 +1,9 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.databinding.MemoItemBinding
 
 class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title:String, content: String, id: Int) -> Unit,

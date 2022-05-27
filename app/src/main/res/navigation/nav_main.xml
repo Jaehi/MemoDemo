@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.applemango.memodemo.MainFragment"
+        android:name="com.applemango.memodemo.view.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -18,12 +18,16 @@
     </fragment>
     <fragment
         android:id="@+id/newMemoFragment"
-        android:name="com.applemango.memodemo.NewMemoFragment"
+        android:name="com.applemango.memodemo.view.NewMemoFragment"
         android:label="fragment_new_memo"
-        tools:layout="@layout/fragment_new_memo" />
+        tools:layout="@layout/fragment_new_memo" >
+        <action
+            android:id="@+id/action_newMemoFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/memoListFragment"
-        android:name="com.applemango.memodemo.MemoListFragment"
+        android:name="com.applemango.memodemo.view.MemoListFragment"
         android:label="fragment_memo_list"
         tools:layout="@layout/fragment_memo_list" >
         <action
@@ -32,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.applemango.memodemo.ResultFragment"
+        android:name="com.applemango.memodemo.view.ResultFragment"
         tools:layout="@layout/fragment_result"
         >
         <argument

@@ -1,15 +1,13 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.viewmodel
 
 import android.app.Application
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
+import com.applemango.memodemo.data.MemoData
+import com.applemango.memodemo.data.MemoDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

@@ -1,4 +1,4 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

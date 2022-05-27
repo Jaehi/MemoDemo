@@ -1,4 +1,4 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,5 +8,5 @@ data class MemoData(
         val title: String,
         val content: String,
         @PrimaryKey(autoGenerate = true)
-        var id : Int = 0
+        var id: Int = 0
 )

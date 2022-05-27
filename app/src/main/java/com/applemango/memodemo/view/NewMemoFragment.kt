@@ -1,4 +1,4 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.view
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.applemango.memodemo.R
 import com.applemango.memodemo.databinding.FragmentNewMemoBinding
+import com.applemango.memodemo.viewmodel.NewViewModel
 
 class NewMemoFragment : Fragment() {
 
@@ -35,6 +37,8 @@ class NewMemoFragment : Fragment() {
         with(bind) {
             btSave.setOnClickListener {
                 viewModel.insert()
+                findNavController().navigate(R.id.action_newMemoFragment_to_resultFragment)
+                Log.d("SSSSSSSSSSs","done")
             }
         }
     }

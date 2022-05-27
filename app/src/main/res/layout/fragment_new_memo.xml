@@ -7,14 +7,14 @@
 
         <variable
             name="viewmodel"
-            type="com.applemango.memodemo.NewViewModel" />
+            type="com.applemango.memodemo.viewmodel.NewViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".NewMemoFragment">
+        tools:context=".view.NewMemoFragment">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/et_title"
+                    android:id="@+id/tv_title"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
@@ -42,7 +42,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_contents"
+                    android:id="@+id/tv_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="500dp"
@@ -59,7 +59,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
                 <Button
                     android:id="@+id/bt_save"
@@ -70,7 +70,7 @@
                     android:onClick="@{() -> viewmodel.insert()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_contents" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_contents" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

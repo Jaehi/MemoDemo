@@ -1,4 +1,4 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.view
 
 import android.content.Context
 import android.os.Bundle
@@ -28,8 +28,8 @@ class ResultFragment : Fragment() {
             Log.d("ERROR","ERROR")
         }
 
-        bind.etTitle.text = title
-        bind.etContents.text = contents
+        bind.tvTitle.text = title
+        bind.tvContents.text = contents
 
         return bind.root
     }
