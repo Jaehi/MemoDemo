@@ -26,7 +26,9 @@ class MainFragment : Fragment() {
 
     private fun onClick(){
         bind.btWrite.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_newMemoFragment)
+
+            val action = MainFragmentDirections.actionMainFragmentToNewMemoFragment(null)
+            findNavController().navigate(action)
         }
 
         bind.btGoList.setOnClickListener {

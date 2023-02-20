@@ -16,7 +16,7 @@ class ListViewModel(
         private val myApplication: Application
 ) : AndroidViewModel(myApplication) {
 
-    val db = Room.databaseBuilder(
+    private val db = Room.databaseBuilder(
             myApplication,
             MemoDataBase::class.java,"db-memo"
     ).build()
@@ -29,7 +29,7 @@ class ListViewModel(
         getData()
     }
 
-    fun getData() {
+    private fun getData() {
         viewModelScope.launch(Dispatchers.IO) {
             val res = db.MemoDao().getListData()
             withContext(Dispatchers.Main){

@@ -9,38 +9,37 @@
         android:name="com.applemango.memodemo.view.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
+
         <action
             android:id="@+id/action_mainFragment_to_newMemoFragment"
             app:destination="@id/newMemoFragment" />
+
         <action
             android:id="@+id/action_mainFragment_to_memoListFragment"
             app:destination="@id/memoListFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/newMemoFragment"
         android:name="com.applemango.memodemo.view.NewMemoFragment"
         android:label="fragment_new_memo"
         tools:layout="@layout/fragment_new_memo" >
-        <action
-            android:id="@+id/action_newMemoFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
+        <argument
+            android:name="data"
+            app:argType="com.applemango.memodemo.data.MemoData"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
+
     <fragment
         android:id="@+id/memoListFragment"
         android:name="com.applemango.memodemo.view.MemoListFragment"
         android:label="fragment_memo_list"
         tools:layout="@layout/fragment_memo_list" >
         <action
-            android:id="@+id/action_memoListFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/resultFragment"
-        android:name="com.applemango.memodemo.view.ResultFragment"
-        tools:layout="@layout/fragment_result"
-        >
-        <argument
-            android:name="title"
-            app:argType="string" />
+            android:id="@+id/action_memoListFragment_to_newMemoFragment"
+            app:destination="@id/newMemoFragment" />
+
     </fragment>
 </navigation>

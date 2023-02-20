@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.applemango.memodemo.R
 import com.applemango.memodemo.databinding.FragmentNewMemoBinding
+import com.applemango.memodemo.viewmodel.Mode
 import com.applemango.memodemo.viewmodel.NewViewModel
 
 class NewMemoFragment : Fragment() {
@@ -20,6 +22,8 @@ class NewMemoFragment : Fragment() {
 
     private lateinit var viewModel: NewViewModel
 
+    private val args : NewMemoFragmentArgs by navArgs()
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -27,19 +31,32 @@ class NewMemoFragment : Fragment() {
         viewModel = requireActivity().run {
             ViewModelProvider(this).get(NewViewModel::class.java)
         }
-        bind.lifecycleOwner = this
-        bind.viewmodel = viewModel
-        initUi()
+
+        if (args.data == null){
+            Log.d("dfjkdfjklsdfjkls","${args.data}")
+            viewModel.changeMode(Mode.NEW_MEMO)
+
+        }else{
+            Log.d("dsfjsdfjkljkldfs","${args.data}")
+            viewModel.changeMode(Mode.RESULT_MEMO)
+            viewModel.setData(args.data!!)
+        }
+
+        Log.d("jkldfjklfsdjkldfsjklfsd","${args.data} ${viewModel.tempData.value} ${viewModel.resultData.value} , ${viewModel.mode.value}")
+        initView()
         return bind.root
     }
 
-    private fun initUi() {
+    private fun initView()  {
         with(bind) {
             btSave.setOnClickListener {
                 viewModel.insert()
-                findNavController().navigate(R.id.action_newMemoFragment_to_resultFragment)
+
                 Log.d("SSSSSSSSSSs","done")
             }
+            lifecycleOwner = this@NewMemoFragment
+            viewmodel = viewModel
         }
     }
+
 }

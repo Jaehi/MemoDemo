@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewmodel"
             type="com.applemango.memodemo.viewmodel.NewViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.applemango.memodemo.view.NewMemoFragment" />
 
     </data>
 
@@ -35,9 +38,13 @@
                     android:backgroundTint="@color/point"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:text="@={viewmodel.title}"
+                    android:gravity="center"
+                    android:afterTextChanged="@{e -> viewmodel.setTitle(e.toString)}"
                     android:textSize="20sp"
                     android:textColor="@color/highlight"
+                    mode="@{viewmodel.mode}"
+                    viewModel="@{viewmodel}"
+                    type="@{2}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -55,9 +62,12 @@
                     android:gravity="top"
                     android:imeOptions="actionDone"
                     android:padding="10dp"
-                    android:text="@={viewmodel.contents}"
+                    android:afterTextChanged="@{e -> viewmodel.setContents(e.toString)}"
                     android:textSize="30sp"
                     android:textColor="@color/highlight"
+                    mode="@{viewmodel.mode}"
+                    viewModel="@{viewmodel}"
+                    type="@{1}"
                     app:layout_constraintBottom_toTopOf="@+id/bt_save"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -69,8 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="SAVE"
-                    android:onClick="@{() -> viewmodel.insert()}"
+                    mode="@{viewmodel.mode}"
+                    viewModel="@{viewmodel}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_contents"

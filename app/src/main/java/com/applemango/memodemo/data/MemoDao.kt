@@ -13,4 +13,7 @@ interface MemoDao {
 
     @Delete
     fun delete(memoData: MemoData)
+
+    @Update
+    fun update(vararg memoData: MemoData)
 }
