@@ -36,9 +36,14 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO){
             if (resultData.value?.id != null){
                 db.MemoDao().update(MemoData(tempData.value?.title.toString(),tempData.value?.content.toString(), resultData.value?.id!!))
-                _resultData.postValue(db.MemoDao().loadNewMemo(tempData.value?.id!!))
+                val newData = db.MemoDao().loadNewMemo(tempData.value?.id!!)
+                viewModelScope.launch {
+                    _resultData.value = newData
+                }
+
             }
         }
+
     }
 
     fun changeMode(mode : Mode){
@@ -60,6 +65,23 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
     fun setContents(contents : String){
         _tempData.value?.content = contents
     }
+
+    fun modeAction(mode : Mode){
+        when(mode){
+            Mode.NEW_MEMO ->{
+                insert()
+                changeMode(Mode.RESULT_MEMO)
+            }
+            Mode.EDIT_MEMO ->{
+                update()
+                changeMode(Mode.RESULT_MEMO)
+            }
+            Mode.RESULT_MEMO ->{
+                changeMode(Mode.EDIT_MEMO)
+            }
+        }
+    }
+
 }
 
 enum class Mode{

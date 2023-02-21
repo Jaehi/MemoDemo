@@ -1,10 +1,7 @@
 package com.applemango.memodemo.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.room.Room
 import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.data.MemoDataBase
@@ -21,28 +18,14 @@ class ListViewModel(
             MemoDataBase::class.java,"db-memo"
     ).build()
 
-    private val _memoList = MutableLiveData<List<MemoData>>()
-
+    private val _memoList = db.MemoDao().getListData().asLiveData()
     val memoList : LiveData<List<MemoData>> = _memoList
 
-    init {
-        getData()
-    }
-
-    private fun getData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val res = db.MemoDao().getListData()
-            withContext(Dispatchers.Main){
-                _memoList.value = res
-            }
-        }
-    }
 
     fun delete(title : String, contents : String, id : Int) {
         viewModelScope.launch(Dispatchers.IO) {
             db.MemoDao().delete(MemoData(title,contents, id))
         }
-        getData()
     }
 
     fun getValue(): MemoDataBase? {

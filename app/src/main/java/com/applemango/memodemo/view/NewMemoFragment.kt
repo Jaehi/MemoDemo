@@ -33,29 +33,24 @@ class NewMemoFragment : Fragment() {
         }
 
         if (args.data == null){
-            Log.d("dfjkdfjklsdfjkls","${args.data}")
             viewModel.changeMode(Mode.NEW_MEMO)
 
         }else{
-            Log.d("dsfjsdfjkljkldfs","${args.data}")
             viewModel.changeMode(Mode.RESULT_MEMO)
             viewModel.setData(args.data!!)
         }
 
-        Log.d("jkldfjklfsdjkldfsjklfsd","${args.data} ${viewModel.tempData.value} ${viewModel.resultData.value} , ${viewModel.mode.value}")
         initView()
         return bind.root
     }
 
     private fun initView()  {
         with(bind) {
-            btSave.setOnClickListener {
-                viewModel.insert()
-
-                Log.d("SSSSSSSSSSs","done")
-            }
             lifecycleOwner = this@NewMemoFragment
             viewmodel = viewModel
+            btSave.setOnClickListener{
+                viewModel.modeAction(viewModel.mode.value!!)
+            }
         }
     }
 
