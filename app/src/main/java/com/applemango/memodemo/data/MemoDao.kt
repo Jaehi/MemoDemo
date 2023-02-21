@@ -8,11 +8,14 @@ interface MemoDao {
     @Query("SELECT * FROM table_memo")
     fun getListData() : List<MemoData>
 
+    @Query("SELECT * FROM table_memo WHERE id = :id LIMIT 1")
+    fun loadNewMemo(id : Int) : MemoData
+
     @Insert
-    fun insert(memoData: MemoData)
+    fun insert(vararg memoData: MemoData)
 
     @Delete
-    fun delete(memoData: MemoData)
+    fun delete(vararg memoData: MemoData)
 
     @Update
     fun update(vararg memoData: MemoData)

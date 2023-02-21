@@ -33,28 +33,24 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun update(){
-        Log.d("jkldfjklfsdjkldfsjklfsd","${tempData.value} ${resultData.value} , ${mode.value}")
         viewModelScope.launch(Dispatchers.IO){
             if (resultData.value?.id != null){
                 db.MemoDao().update(MemoData(tempData.value?.title.toString(),tempData.value?.content.toString(), resultData.value?.id!!))
+                _resultData.postValue(db.MemoDao().loadNewMemo(tempData.value?.id!!))
             }
         }
     }
 
-    fun updateData(){
-        _resultData.value = null
-    }
-
     fun changeMode(mode : Mode){
         _mode.value = mode
-        Log.d("dfjsdfjkldflsjkdfjkljklsdf","${mode}")
     }
 
     fun setData(data : MemoData){
         _resultData.value = data
-        _tempData.value?.title = data.title
-        _tempData.value?.content = data.content
-        Log.d("1111jkldfjklfsdjkldfsjklfsd"," ${resultData.value} , ${tempData.value?.title} , ${mode.value}")
+
+        var data = ResultData(data.title,data.content,data.id)
+        _tempData.value = data
+
     }
 
     fun setTitle(title : String){
