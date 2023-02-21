@@ -26,13 +26,14 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
     private var _mode = MutableLiveData<Mode>()
     val mode : LiveData<Mode> get() = _mode
 
-    fun insert() {
+    private fun insert() {
+
         viewModelScope.launch(Dispatchers.IO) {
             db.MemoDao().insert(MemoData(tempData.value?.title.toString() , tempData.value?.content.toString()))
         }
     }
 
-    fun update(){
+    private fun update(){
         viewModelScope.launch(Dispatchers.IO){
             if (resultData.value?.id != null){
                 db.MemoDao().update(MemoData(tempData.value?.title.toString(),tempData.value?.content.toString(), resultData.value?.id!!))
@@ -40,21 +41,25 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
                 viewModelScope.launch {
                     _resultData.value = newData
                 }
-
             }
         }
-
     }
 
     fun changeMode(mode : Mode){
         _mode.value = mode
     }
 
-    fun setData(data : MemoData){
-        _resultData.value = data
-
-        var data = ResultData(data.title,data.content,data.id)
-        _tempData.value = data
+    fun setData(data : MemoData?){
+       data?.let {
+           _resultData.value = data
+           val temp = ResultData(data.title,data.content,data.id)
+           _tempData.value = temp
+       }
+        if (data == null){
+            _resultData.value = null
+            val temp = ResultData("","",null)
+            _tempData.value = temp
+        }
 
     }
 

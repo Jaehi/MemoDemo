@@ -34,6 +34,7 @@ class NewMemoFragment : Fragment() {
 
         if (args.data == null){
             viewModel.changeMode(Mode.NEW_MEMO)
+            viewModel.setData(null)
 
         }else{
             viewModel.changeMode(Mode.RESULT_MEMO)
