@@ -2,23 +2,22 @@ package com.applemango.memodemo.viewmodel
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.room.Room
+import com.applemango.memodemo.MemoRepositoryImpl
 import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.data.MemoDataBase
 import com.applemango.memodemo.data.ResultData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NewViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class NewViewModel @Inject constructor( private val repo : MemoRepositoryImpl) : ViewModel() {
 
-    private val db = Room.databaseBuilder(application, MemoDataBase::class.java, "db-memo").build()
-
-    private var _resultData = MutableLiveData<MemoData>()
-    val resultData : LiveData<MemoData> get() = _resultData
+    private var _resultData = MutableLiveData<MemoData?>()
+    val resultData : MutableLiveData<MemoData?> get() = _resultData
 
     private var _tempData = MutableLiveData<ResultData>()
     val tempData : LiveData<ResultData> get() = _tempData
@@ -29,18 +28,18 @@ class NewViewModel(application: Application) : AndroidViewModel(application) {
     private fun insert() {
 
         viewModelScope.launch(Dispatchers.IO) {
-            db.MemoDao().insert(MemoData(tempData.value?.title.toString() , tempData.value?.content.toString()))
+            repo.insert(MemoData(tempData.value?.title.toString() , tempData.value?.content.toString()))
         }
     }
 
     private fun update(){
         viewModelScope.launch(Dispatchers.IO){
             if (resultData.value?.id != null){
-                db.MemoDao().update(MemoData(tempData.value?.title.toString(),tempData.value?.content.toString(), resultData.value?.id!!))
-                val newData = db.MemoDao().loadNewMemo(tempData.value?.id!!)
-                viewModelScope.launch {
-                    _resultData.value = newData
-                }
+                repo.update(MemoData(tempData.value?.title.toString(),tempData.value?.content.toString(), resultData.value?.id!!))
+                val newData = repo.getMemo(tempData.value?.id!!)
+//                viewModelScope.launch {
+//                    //_resultData.value = newData
+//                }
             }
         }
     }

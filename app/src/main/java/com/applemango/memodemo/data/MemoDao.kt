@@ -10,7 +10,7 @@ interface MemoDao {
     fun getListData() : kotlinx.coroutines.flow.Flow<List<MemoData>>
 
     @Query("SELECT * FROM table_memo WHERE id = :id LIMIT 1")
-    fun loadNewMemo(id : Int) : MemoData
+    suspend fun loadNewMemo(id : Int) : MemoData
 
     @Insert
     fun insert(vararg memoData: MemoData)

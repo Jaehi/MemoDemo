@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.applemango.memodemo.adapter.MemoAdapter
 import com.applemango.memodemo.databinding.FragmentMemoListBinding
 import com.applemango.memodemo.viewmodel.ListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MemoListFragment : androidx.fragment.app.Fragment() {
 
     private val bind: FragmentMemoListBinding by lazy {
@@ -36,15 +38,11 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
             },
                     onClick = { position ->
                         //safeargs
-
                         val tempData = viewModel.memoList.value?.get(position)
 
                         val action = MemoListFragmentDirections.actionMemoListFragmentToNewMemoFragment(tempData)
 
                         findNavController().navigate(action)
-
-
-
                     }
             )
         })

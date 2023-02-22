@@ -25,9 +25,9 @@ fun setMode(view : Button, mode : Mode){
     }
 }
 
-@BindingAdapter("mode","type")
-fun setMode(view : EditText , mode: Mode , type : Int){
-   if (type == 1){
+@BindingAdapter("mode")
+fun setMode(view : EditText , mode: Mode ){
+
        when(mode){
            Mode.EDIT_MEMO -> {
                view.isEnabled = true
@@ -39,17 +39,4 @@ fun setMode(view : EditText , mode: Mode , type : Int){
                view.isEnabled = false
            }
        }
-   }else if (type == 2){
-       when(mode){
-           Mode.EDIT_MEMO -> {
-               view.isEnabled = true
-           }
-           Mode.NEW_MEMO -> {
-               view.isEnabled = true
-           }
-           Mode.RESULT_MEMO -> {
-               view.isEnabled = false
-           }
-       }
-   }
 }

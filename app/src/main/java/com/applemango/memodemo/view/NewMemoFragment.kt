@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,14 +14,16 @@ import com.applemango.memodemo.R
 import com.applemango.memodemo.databinding.FragmentNewMemoBinding
 import com.applemango.memodemo.viewmodel.Mode
 import com.applemango.memodemo.viewmodel.NewViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewMemoFragment : Fragment() {
 
     private val bind: FragmentNewMemoBinding by lazy {
         FragmentNewMemoBinding.inflate(LayoutInflater.from(context))
     }
 
-    private lateinit var viewModel: NewViewModel
+    private val viewModel : NewViewModel by viewModels()
 
     private val args : NewMemoFragmentArgs by navArgs()
 
@@ -28,9 +31,6 @@ class NewMemoFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        viewModel = requireActivity().run {
-            ViewModelProvider(this).get(NewViewModel::class.java)
-        }
 
         if (args.data == null){
             viewModel.changeMode(Mode.NEW_MEMO)
