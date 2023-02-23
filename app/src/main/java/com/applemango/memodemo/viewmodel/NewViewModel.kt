@@ -1,45 +1,43 @@
 package com.applemango.memodemo.viewmodel
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Room
 import com.applemango.memodemo.MemoRepositoryImpl
 import com.applemango.memodemo.data.MemoData
-import com.applemango.memodemo.data.MemoDataBase
 import com.applemango.memodemo.data.ResultData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewViewModel @Inject constructor( private val repo : MemoRepositoryImpl) : ViewModel() {
+class NewViewModel @Inject constructor(private val repo : MemoRepositoryImpl) : ViewModel() {
 
-    private var _resultData = MutableLiveData<MemoData?>()
-    val resultData : MutableLiveData<MemoData?> get() = _resultData
+    private var _resultData = MutableStateFlow<MemoData?>(null)
+    val resultData : StateFlow<MemoData?> get() = _resultData
 
-    private var _tempData = MutableLiveData<ResultData>()
-    val tempData : LiveData<ResultData> get() = _tempData
+    private var _tempData = MutableStateFlow<ResultData?>(null)
+    private val tempData : StateFlow<ResultData?> get() = _tempData
 
-    private var _mode = MutableLiveData<Mode>()
-    val mode : LiveData<Mode> get() = _mode
+    private var _mode = MutableStateFlow<Mode?>(null)
+    val mode : StateFlow<Mode?> get() = _mode
 
     private fun insert() {
 
         viewModelScope.launch(Dispatchers.IO) {
             repo.insert(MemoData(tempData.value?.title.toString() , tempData.value?.content.toString()))
         }
+
     }
 
     private fun update(){
         viewModelScope.launch(Dispatchers.IO){
             if (resultData.value?.id != null){
                 repo.update(MemoData(tempData.value?.title.toString(),tempData.value?.content.toString(), resultData.value?.id!!))
-                val newData = repo.getMemo(tempData.value?.id!!)
-//                viewModelScope.launch {
-//                    //_resultData.value = newData
-//                }
+                repo.getMemo(resultData.value!!.id).collect{
+                    _resultData.value = it
+                }
             }
         }
     }
@@ -59,7 +57,6 @@ class NewViewModel @Inject constructor( private val repo : MemoRepositoryImpl) :
             val temp = ResultData("","",null)
             _tempData.value = temp
         }
-
     }
 
     fun setTitle(title : String){
@@ -85,7 +82,6 @@ class NewViewModel @Inject constructor( private val repo : MemoRepositoryImpl) :
             }
         }
     }
-
 }
 
 enum class Mode{

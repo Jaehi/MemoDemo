@@ -1,7 +1,6 @@
 package com.applemango.memodemo.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,9 @@ import com.applemango.memodemo.adapter.MemoAdapter
 import com.applemango.memodemo.databinding.FragmentMemoListBinding
 import com.applemango.memodemo.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MemoListFragment : androidx.fragment.app.Fragment() {
@@ -27,28 +29,32 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
             savedInstanceState: Bundle?
 
     ): View {
-
         bind.mRecyclerView.layoutManager = LinearLayoutManager(context)
-
-        viewModel.memoList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            bind.mRecyclerView.adapter = MemoAdapter(it,
-                onClickDelete = { title, content, id ->
-                Log.d("delete", "onCreateView: $title , $content $id")
-                viewModel.delete(title, content, id)
-            },
-                    onClick = { position ->
-                        //safeargs
-                        val tempData = viewModel.memoList.value?.get(position)
-
-                        val action = MemoListFragmentDirections.actionMemoListFragmentToNewMemoFragment(tempData)
-
-                        findNavController().navigate(action)
-                    }
-            )
-        })
+        viewModel.refreshData()
+        observeData()
 
         return bind.root
     }
 
+    private fun observeData(){
+        CoroutineScope(Dispatchers.Main).launch {
 
+                   viewModel.memoList.collect{
+                       bind.mRecyclerView.adapter = MemoAdapter(
+                           it!!,
+                           onClickDelete = { title, content, id ->
+                               viewModel.delete(title, content, id)
+                           },
+                           onClick = { position ->
+                               //safeargs
+                               val tempData = it[position]
+
+                               val action = MemoListFragmentDirections.actionMemoListFragmentToNewMemoFragment(tempData)
+
+                               findNavController().navigate(action)
+                           }
+                       )
+                   }
+        }
+    }
 }

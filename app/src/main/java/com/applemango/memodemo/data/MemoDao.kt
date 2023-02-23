@@ -7,7 +7,7 @@ import java.util.concurrent.Flow
 interface MemoDao {
 
     @Query("SELECT * FROM table_memo")
-    fun getListData() : kotlinx.coroutines.flow.Flow<List<MemoData>>
+    fun getListData() : List<MemoData>
 
     @Query("SELECT * FROM table_memo WHERE id = :id LIMIT 1")
     suspend fun loadNewMemo(id : Int) : MemoData
