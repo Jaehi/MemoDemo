@@ -10,5 +10,4 @@ interface MemoRepository {
     fun update(memo : MemoData)
     fun insert(memo : MemoData)
     fun delete(memo : MemoData)
-
 }

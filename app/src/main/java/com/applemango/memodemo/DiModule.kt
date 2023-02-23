@@ -21,7 +21,6 @@ class DiModule {
         return Room.databaseBuilder(context,MemoDataBase::class.java,"db-memo").build()
     }
 
-    @Singleton
     @Provides
     fun provideMemoDAO(memoDataBase: MemoDataBase) : MemoDao{
         return memoDataBase.MemoDao()

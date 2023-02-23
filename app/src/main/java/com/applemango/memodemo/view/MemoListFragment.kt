@@ -1,10 +1,12 @@
 package com.applemango.memodemo.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applemango.memodemo.adapter.MemoAdapter
@@ -37,24 +39,30 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
     }
 
     private fun observeData(){
-        CoroutineScope(Dispatchers.Main).launch {
 
-                   viewModel.memoList.collect{
-                       bind.mRecyclerView.adapter = MemoAdapter(
-                           it!!,
-                           onClickDelete = { title, content, id ->
-                               viewModel.delete(title, content, id)
-                           },
-                           onClick = { position ->
-                               //safeargs
-                               val tempData = it[position]
+        Log.d("sdfljjadslhfjkasdhflkas","눗")
+        lifecycleScope.launchWhenStarted {
+                Log.d("sdfljjadslhfjkasdhflkas","눗눗")
+                viewModel.memoList.collect{
+                    Log.d("sdfljjadslhfjkasdhflkas","눗뉴순ㅅ")
+                    bind.mRecyclerView.adapter = MemoAdapter(
+                        it,
+                        onClickDelete = { title, content, id ->
+                            viewModel.delete(title, content, id)
+                        }
+                    ) { position ->
+                        //safeargs
+                        val tempData = it[position]
 
-                               val action = MemoListFragmentDirections.actionMemoListFragmentToNewMemoFragment(tempData)
+                        val action =
+                            MemoListFragmentDirections.actionMemoListFragmentToNewMemoFragment(
+                                tempData
+                            )
 
-                               findNavController().navigate(action)
-                           }
-                       )
-                   }
+                        findNavController().navigate(action)
+                    }
+                }
+
         }
     }
 }

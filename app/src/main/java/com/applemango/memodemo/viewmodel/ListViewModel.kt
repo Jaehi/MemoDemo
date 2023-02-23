@@ -32,8 +32,11 @@ class ListViewModel @Inject constructor(private val repo : MemoRepositoryImpl) :
     }
 
     fun delete(title : String, contents : String, id : Int) {
+        Log.d("dfs;kdf;lsakf;afdkasl;f","$title $contents $id")
         CoroutineScope(Dispatchers.IO).launch {
+            Log.d("dfs;kdf;lsakf;afdkasl;f","들어옴")
             repo.delete(MemoData(title,contents, id))
+            refreshData()
         }
     }
 
