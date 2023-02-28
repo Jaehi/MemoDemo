@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,7 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
                         it,
                         onClickDelete = { title, content, id ->
                             viewModel.delete(title, content, id)
+                            Toast.makeText(requireContext(),"삭제 완료",Toast.LENGTH_SHORT).show()
                         }
                     ) { position ->
                         //safeargs
