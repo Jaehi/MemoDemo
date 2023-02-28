@@ -25,26 +25,17 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
     }
     private val viewModel: ListViewModel by viewModels()
 
-    override fun onCreateView(
-
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         bind.mRecyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.refreshData()
         observeData()
-
         return bind.root
     }
 
     private fun observeData(){
 
-        Log.d("sdfljjadslhfjkasdhflkas","눗")
         lifecycleScope.launchWhenStarted {
-                Log.d("sdfljjadslhfjkasdhflkas","눗눗")
                 viewModel.memoList.collect{
-                    Log.d("sdfljjadslhfjkasdhflkas","눗뉴순ㅅ")
                     bind.mRecyclerView.adapter = MemoAdapter(
                         it,
                         onClickDelete = { title, content, id ->

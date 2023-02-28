@@ -33,18 +33,18 @@ class MemoRepositoryImpl @Inject constructor( private val memoDao: MemoDao) : Me
         }
     }
 
-    override fun update(memo : MemoData) {
+    override suspend fun update(memo : MemoData) {
         Log.d("djdfslasdjkdajslk","${memo}")
         memoDao.update(memo)
     }
 
-    override fun insert(memo : MemoData) {
+    override suspend fun insert(memo : MemoData) {
 
         Log.d("djdfslasdjkdajslk","${memo}")
         memoDao.insert(memo)
     }
 
-    override fun delete(memo : MemoData) {
+    override suspend fun delete(memo : MemoData) {
 
         Log.d("djdfslasdjkdajslk","${memo}")
         memoDao.delete(memo)

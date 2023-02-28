@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface MemoRepository {
     fun getAllMemo() : Flow<List<MemoData>?>
     fun getMemo(id : Int) : Flow<MemoData?>
-    fun update(memo : MemoData)
-    fun insert(memo : MemoData)
-    fun delete(memo : MemoData)
+    suspend fun update(memo : MemoData)
+    suspend fun insert(memo : MemoData)
+    suspend fun delete(memo : MemoData)
 }

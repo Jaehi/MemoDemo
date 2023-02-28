@@ -3,6 +3,7 @@ package com.applemango.memodemo
 import android.content.Context
 import androidx.room.Room
 import com.applemango.memodemo.data.MemoDao
+import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.data.MemoDataBase
 import dagger.Module
 import dagger.Provides
@@ -18,12 +19,12 @@ class DiModule {
     @Singleton
     @Provides
     fun provideMemoDatabase(@ApplicationContext context: Context) : MemoDataBase{
-        return Room.databaseBuilder(context,MemoDataBase::class.java,"db-memo").build()
+        return Room.databaseBuilder(context,MemoDataBase::class.java,"database_memo").build()
     }
 
     @Provides
-    fun provideMemoDAO(memoDataBase: MemoDataBase) : MemoDao{
-        return memoDataBase.MemoDao()
+    fun provideMemoDAO(memoDataBase: MemoDataBase) : MemoDao {
+        return memoDataBase.memoDao()
     }
 
     @Singleton

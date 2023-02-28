@@ -19,12 +19,10 @@ class ListViewModel @Inject constructor(private val repo : MemoRepositoryImpl) :
     private val _memoList = MutableSharedFlow<List<MemoData>>(replay = 0)
     val memoList = _memoList.asSharedFlow()
 
-
     fun refreshData(){
         CoroutineScope(Dispatchers.IO).launch {
             repo.getAllMemo().collect{
                 if (it != null) {
-                    Log.d("dfs;kdf;lsakf;afdkasl;f","${it}")
                     _memoList.emit(it)
                 }
             }
@@ -32,12 +30,9 @@ class ListViewModel @Inject constructor(private val repo : MemoRepositoryImpl) :
     }
 
     fun delete(title : String, contents : String, id : Int) {
-        Log.d("dfs;kdf;lsakf;afdkasl;f","$title $contents $id")
         CoroutineScope(Dispatchers.IO).launch {
-            Log.d("dfs;kdf;lsakf;afdkasl;f","들어옴")
             repo.delete(MemoData(title,contents, id))
             refreshData()
         }
     }
-
 }
