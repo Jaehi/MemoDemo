@@ -1,9 +1,9 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.di
 
 import android.content.Context
 import androidx.room.Room
+import com.applemango.memodemo.repository.MemoRepositoryImpl
 import com.applemango.memodemo.data.MemoDao
-import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.data.MemoDataBase
 import dagger.Module
 import dagger.Provides
@@ -29,7 +29,7 @@ class DiModule {
 
     @Singleton
     @Provides
-    fun provideMemoRepository(memoDao: MemoDao) : MemoRepositoryImpl{
+    fun provideMemoRepository(memoDao: MemoDao) : MemoRepositoryImpl {
         return MemoRepositoryImpl(memoDao)
     }
 }

@@ -1,4 +1,4 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.repository
 
 import com.applemango.memodemo.data.MemoDao
 import com.applemango.memodemo.data.MemoData

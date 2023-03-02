@@ -1,15 +1,10 @@
 package com.applemango.memodemo.viewmodel
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Room
-import com.applemango.memodemo.MemoRepositoryImpl
+import com.applemango.memodemo.repository.MemoRepositoryImpl
 import com.applemango.memodemo.data.MemoData
-import com.applemango.memodemo.data.MemoDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 

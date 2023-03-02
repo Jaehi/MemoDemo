@@ -1,7 +1,7 @@
 package com.applemango.memodemo.viewmodel
 
 import androidx.lifecycle.*
-import com.applemango.memodemo.MemoRepositoryImpl
+import com.applemango.memodemo.repository.MemoRepositoryImpl
 import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.data.ResultData
 import dagger.hilt.android.lifecycle.HiltViewModel
