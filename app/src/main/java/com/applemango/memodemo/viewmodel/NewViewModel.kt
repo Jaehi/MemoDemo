@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.applemango.memodemo.repository.MemoRepositoryImpl
 import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.data.ResultData
+import com.applemango.memodemo.repository.MemoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewViewModel @Inject constructor(private val repo : MemoRepositoryImpl) : ViewModel() {
+class NewViewModel @Inject constructor(private val repo : MemoRepository) : ViewModel() {
 
     private var _resultData = MutableStateFlow<MemoData?>(null)
     val resultData : StateFlow<MemoData?> get() = _resultData
@@ -25,14 +26,14 @@ class NewViewModel @Inject constructor(private val repo : MemoRepositoryImpl) : 
 
     private fun insert() {
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Default) {
             repo.insert(MemoData(tempData.value?.title.toString() , tempData.value?.content.toString()))
         }
 
     }
 
     private fun update(){
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.Default){
             if (resultData.value?.id != null){
                 repo.update(MemoData(tempData.value?.title.toString(),tempData.value?.content.toString(), resultData.value?.id!!))
                 repo.getMemo(resultData.value!!.id).collect{

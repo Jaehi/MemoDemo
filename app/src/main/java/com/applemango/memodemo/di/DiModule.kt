@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.applemango.memodemo.repository.MemoRepositoryImpl
 import com.applemango.memodemo.data.MemoDao
 import com.applemango.memodemo.data.MemoDataBase
+import com.applemango.memodemo.repository.MemoRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,9 +29,11 @@ class DiModule {
         return memoDataBase.memoDao()
     }
 
-    @Singleton
-    @Provides
-    fun provideMemoRepository(memoDao: MemoDao) : MemoRepositoryImpl {
-        return MemoRepositoryImpl(memoDao)
-    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class BindModule {
+    @Binds
+    abstract fun bindMemoRepository(memoRepositoryImpl: MemoRepositoryImpl) : MemoRepository
 }
