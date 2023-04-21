@@ -10,5 +10,4 @@ abstract class MemoDataBase : RoomDatabase() {
 
     abstract fun memoDao() : MemoDao
 
-
 }
