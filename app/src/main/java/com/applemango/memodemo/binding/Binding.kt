@@ -1,4 +1,4 @@
-package com.applemango.memodemo
+package com.applemango.memodemo.binding
 
 import android.view.View
 import android.widget.Button
