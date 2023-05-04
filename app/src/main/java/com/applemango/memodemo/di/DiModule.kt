@@ -16,7 +16,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 class DiModule {
 
     @Singleton
@@ -34,7 +34,7 @@ class DiModule {
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class BindModule {
+abstract class BindModule{
     @Binds
     abstract fun bindMemoRepository(memoRepositoryImpl: MemoRepositoryImpl) : MemoRepository
 }
