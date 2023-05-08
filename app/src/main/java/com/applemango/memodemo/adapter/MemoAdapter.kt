@@ -12,7 +12,7 @@ class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title: S
 
     inner class ViewHolder(private val bind: MemoItemBinding) : RecyclerView.ViewHolder(bind.root) {
 
-        fun bindmemo(memo: MemoData) {
+        fun bindMemo(memo: MemoData) {
             bind.itemTitle.text = memo.title
             bind.btDelete.setOnClickListener {
                 onClickDelete(memo.title, memo.content, memo.id)
@@ -25,7 +25,7 @@ class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title: S
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindmemo(data[position])
+        holder.bindMemo(data[position])
         holder.itemView.setOnClickListener {
             onClick(position)
         }

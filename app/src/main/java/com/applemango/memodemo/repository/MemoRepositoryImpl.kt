@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class MemoRepositoryImpl @Inject constructor( private val memoDao: MemoDao) : MemoRepository {
 
-    override fun getAllMemo(): Flow<List<MemoData>?> {
+    override suspend fun getAllMemo(): Flow<List<MemoData>?> {
         return flow{
             try{
                 emit(memoDao.getListData())
@@ -19,7 +19,7 @@ class MemoRepositoryImpl @Inject constructor( private val memoDao: MemoDao) : Me
         }
     }
 
-    override fun getMemo(id : Int): Flow<MemoData?> {
+    override suspend fun getMemo(id : Int): Flow<MemoData?> {
         return flow{
             try{
                 emit(memoDao.loadNewMemo(id))

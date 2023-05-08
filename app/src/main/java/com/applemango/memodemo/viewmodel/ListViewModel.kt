@@ -15,7 +15,7 @@ class ListViewModel @Inject constructor(private val repo : MemoRepositoryImpl) :
     val memoList = _memoList.asSharedFlow()
 
     fun refreshData(){
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repo.getAllMemo().collect{
                 if (it != null) {
                     _memoList.emit(it)
@@ -25,7 +25,7 @@ class ListViewModel @Inject constructor(private val repo : MemoRepositoryImpl) :
     }
 
     fun delete(title : String, contents : String, id : Int) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repo.delete(MemoData(title,contents, id))
             refreshData()
         }
