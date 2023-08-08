@@ -11,7 +11,6 @@ class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title: S
 ) : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val bind: MemoItemBinding) : RecyclerView.ViewHolder(bind.root) {
-
         fun bindMemo(memo: MemoData) {
             bind.itemTitle.text = memo.title
             bind.btDelete.setOnClickListener {

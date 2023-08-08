@@ -20,9 +20,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewMemoFragment : Fragment() {
 
-    private val bind: FragmentNewMemoBinding by lazy {
-        FragmentNewMemoBinding.inflate(LayoutInflater.from(context))
-    }
+    private var _bind: FragmentNewMemoBinding? = null
+
+    private val bind get() = _bind!!
 
     private val viewModel : NewViewModel by viewModels()
 
@@ -32,6 +32,8 @@ class NewMemoFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+
+        _bind = FragmentNewMemoBinding.inflate(inflater,container,false)
 
         if (args.data == null){
             viewModel.changeMode(Mode.NEW_MEMO)
@@ -44,6 +46,11 @@ class NewMemoFragment : Fragment() {
 
         initView()
         return bind.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _bind = null
     }
 
     private fun initView()  {

@@ -1,5 +1,6 @@
 package com.applemango.memodemo.repository
 
+import android.util.Log
 import com.applemango.memodemo.data.MemoDao
 import com.applemango.memodemo.data.MemoData
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +13,9 @@ class MemoRepositoryImpl @Inject constructor( private val memoDao: MemoDao) : Me
         return flow{
             try{
                 emit(memoDao.getListData())
+                Log.d("Rkqjf","${memoDao.getListData()}")
             }catch (e:Exception){
+                Log.d("Rkqjf","퇴근이나 해라 ㅋㅋ")
                 emit(null)
             }
 
