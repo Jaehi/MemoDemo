@@ -21,12 +21,12 @@ class DiModule {
 
     @Singleton
     @Provides
-    fun provideMemoDatabase(@ApplicationContext context: Context) : MemoDataBase{
-        return Room.databaseBuilder(context,MemoDataBase::class.java,"database_memo").build()
+    fun provideMemoDatabase(@ApplicationContext context: Context): MemoDataBase {
+        return Room.databaseBuilder(context, MemoDataBase::class.java, "database_memo").build()
     }
 
     @Provides
-    fun provideMemoDAO(memoDataBase: MemoDataBase) : MemoDao {
+    fun provideMemoDAO(memoDataBase: MemoDataBase): MemoDao {
         return memoDataBase.memoDao()
     }
 
@@ -34,7 +34,7 @@ class DiModule {
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class BindModule{
+abstract class BindModule {
     @Binds
-    abstract fun bindMemoRepository(memoRepositoryImpl: MemoRepositoryImpl) : MemoRepository
+    abstract fun bindMemoRepository(memoRepositoryImpl: MemoRepositoryImpl): MemoRepository
 }

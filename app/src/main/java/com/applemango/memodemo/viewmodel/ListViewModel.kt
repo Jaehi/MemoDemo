@@ -11,25 +11,24 @@ import java.util.Collections
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel @Inject constructor(private val repo : MemoRepositoryImpl) : ViewModel() {
+class ListViewModel @Inject constructor(private val repo: MemoRepositoryImpl) : ViewModel() {
 
     private val _memoList = MutableSharedFlow<List<MemoData>>(replay = 0)
     val memoList = _memoList.asSharedFlow()
 
-    suspend fun refreshData(){
+    suspend fun refreshData() {
         viewModelScope.launch(Dispatchers.Default) {
-            repo.getAllMemo().collect{
+            repo.getAllMemo().collect {
                 if (it != null) {
                     _memoList.emit(it)
-                    Log.d("내가 울고있나요","${it}")
                 }
             }
         }
     }
 
-    fun delete(title : String, contents : String, id : Int) {
+    fun delete(title: String, contents: String, id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.delete(MemoData(title,contents, id))
+            repo.delete(MemoData(title, contents, id))
             refreshData()
         }
     }

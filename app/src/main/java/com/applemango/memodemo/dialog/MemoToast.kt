@@ -11,11 +11,12 @@ import com.applemango.memodemo.databinding.ToastMemoBinding
 
 object MemoToast {
 
-    fun makeToast(context : Context, message : String, seeLong : Boolean) : Toast{
+    fun makeToast(context: Context, message: String, seeLong: Boolean): Toast {
         val inflater = LayoutInflater.from(context)
-        val binding :ToastMemoBinding = DataBindingUtil.inflate(inflater, R.layout.toast_memo,null,false)
+        val binding: ToastMemoBinding =
+            DataBindingUtil.inflate(inflater, R.layout.toast_memo, null, false)
         binding.tvText.text = message
-        val _duration = if(seeLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+        val _duration = if (seeLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
 
         return Toast(context).apply {
             setGravity(Gravity.BOTTOM or Gravity.CENTER, 0, 16.toPx())

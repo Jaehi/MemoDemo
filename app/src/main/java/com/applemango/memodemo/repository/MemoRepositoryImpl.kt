@@ -7,41 +7,38 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class MemoRepositoryImpl @Inject constructor( private val memoDao: MemoDao) : MemoRepository {
+class MemoRepositoryImpl @Inject constructor(private val memoDao: MemoDao) : MemoRepository {
 
     override suspend fun getAllMemo(): Flow<List<MemoData>?> {
-        return flow{
-            try{
+        return flow {
+            try {
                 emit(memoDao.getListData())
-                Log.d("Rkqjf","${memoDao.getListData()}")
-            }catch (e:Exception){
-                Log.d("Rkqjf","퇴근이나 해라 ㅋㅋ")
+            } catch (e: Exception) {
                 emit(null)
             }
 
         }
     }
 
-    override suspend fun getMemo(id : Int): Flow<MemoData?> {
-        return flow{
-            try{
+    override suspend fun getMemo(id: Int): Flow<MemoData?> {
+        return flow {
+            try {
                 emit(memoDao.loadNewMemo(id))
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 emit(null)
             }
-
         }
     }
 
-    override suspend fun update(memo : MemoData) {
+    override suspend fun update(memo: MemoData) {
         memoDao.update(memo)
     }
 
-    override suspend fun insert(memo : MemoData) {
+    override suspend fun insert(memo: MemoData) {
         memoDao.insert(memo)
     }
 
-    override suspend fun delete(memo : MemoData) {
+    override suspend fun delete(memo: MemoData) {
         memoDao.delete(memo)
     }
 }

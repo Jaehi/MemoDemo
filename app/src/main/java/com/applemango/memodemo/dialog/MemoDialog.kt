@@ -9,7 +9,7 @@ import com.applemango.memodemo.databinding.DialogMemoBinding
 
 class MemoDialog(context: Context, val deleteMemo: (() -> Unit)? = null) : Dialog(context) {
 
-    lateinit var binding : DialogMemoBinding
+    lateinit var binding: DialogMemoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +22,12 @@ class MemoDialog(context: Context, val deleteMemo: (() -> Unit)? = null) : Dialo
 
     }
 
-    fun goDelete(){
+    fun goDelete() {
         deleteMemo?.let { it() }
         dismiss()
     }
 
-    fun cancle(){
+    fun cancle() {
         dismiss()
     }
 

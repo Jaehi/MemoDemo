@@ -12,14 +12,14 @@ import com.applemango.memodemo.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    private var _bind : FragmentMainBinding?  = null
+    private var _bind: FragmentMainBinding? = null
     private val bind get() = _bind!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        _bind = FragmentMainBinding.inflate(inflater,container,false)
+        _bind = FragmentMainBinding.inflate(inflater, container, false)
 
         bind.lifecycleOwner = this
         bind.fragment = this
@@ -27,14 +27,13 @@ class MainFragment : Fragment() {
         return bind.root
 
     }
-    fun gotoNewMemo(){
-        Log.d("gotoNewMemo","눌렀져용")
+
+    fun gotoNewMemo() {
         val action = MainFragmentDirections.actionMainFragmentToNewMemoFragment(null)
         findNavController().navigate(action)
     }
 
-    fun gotoListMemo(){
-        Log.d("gotoListMemo","눌렀져용")
+    fun gotoListMemo() {
         findNavController().navigate(R.id.action_mainFragment_to_memoListFragment)
     }
 

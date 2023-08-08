@@ -11,14 +11,16 @@ import com.applemango.memodemo.viewmodel.Mode
 import com.applemango.memodemo.viewmodel.NewViewModel
 
 @BindingAdapter("mode")
-fun setMode(view : Button, mode : Mode){
-    when(mode){
+fun setMode(view: Button, mode: Mode) {
+    when (mode) {
         Mode.EDIT_MEMO -> {
             view.text = "DONE"
         }
+
         Mode.NEW_MEMO -> {
             view.text = "SAVE"
         }
+
         Mode.RESULT_MEMO -> {
             view.text = "EDIT"
         }
@@ -26,17 +28,19 @@ fun setMode(view : Button, mode : Mode){
 }
 
 @BindingAdapter("mode")
-fun setMode(view : EditText , mode: Mode ){
+fun setMode(view: EditText, mode: Mode) {
 
-       when(mode){
-           Mode.EDIT_MEMO -> {
-               view.isEnabled = true
-           }
-           Mode.NEW_MEMO -> {
-               view.isEnabled = true
-           }
-           Mode.RESULT_MEMO -> {
-               view.isEnabled = false
-           }
-       }
+    when (mode) {
+        Mode.EDIT_MEMO -> {
+            view.isEnabled = true
+        }
+
+        Mode.NEW_MEMO -> {
+            view.isEnabled = true
+        }
+
+        Mode.RESULT_MEMO -> {
+            view.isEnabled = false
+        }
+    }
 }

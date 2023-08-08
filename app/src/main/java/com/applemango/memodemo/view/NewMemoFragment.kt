@@ -25,22 +25,22 @@ class NewMemoFragment : Fragment() {
 
     private val bind get() = _bind!!
 
-    private val viewModel : NewViewModel by viewModels()
+    private val viewModel: NewViewModel by viewModels()
 
-    private val args : NewMemoFragmentArgs by navArgs()
+    private val args: NewMemoFragmentArgs by navArgs()
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
-        _bind = FragmentNewMemoBinding.inflate(inflater,container,false)
+        _bind = FragmentNewMemoBinding.inflate(inflater, container, false)
 
-        if (args.data == null){
+        if (args.data == null) {
             viewModel.changeMode(Mode.NEW_MEMO)
             viewModel.setData(null)
 
-        }else{
+        } else {
             viewModel.changeMode(Mode.RESULT_MEMO)
             viewModel.setData(args.data!!)
         }
@@ -54,18 +54,20 @@ class NewMemoFragment : Fragment() {
         _bind = null
     }
 
-    private fun initView()  {
+    private fun initView() {
         with(bind) {
             lifecycleOwner = this@NewMemoFragment
             viewmodel = viewModel
-            btSave.setOnClickListener{
-                when(viewModel.mode.value){
+            btSave.setOnClickListener {
+                when (viewModel.mode.value) {
                     Mode.NEW_MEMO -> {
-                        MemoToast.makeToast(requireContext(),"수정 완료",true).show()
+                        MemoToast.makeToast(requireContext(), "수정 완료", true).show()
                     }
+
                     Mode.EDIT_MEMO -> {
-                        MemoToast.makeToast(requireContext(),"수정 완료",false).show()
+                        MemoToast.makeToast(requireContext(), "수정 완료", false).show()
                     }
+
                     else -> {
 
                     }

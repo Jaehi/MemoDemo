@@ -5,7 +5,6 @@ import java.util.concurrent.Flow
 
 @Dao
 interface MemoDao {
-
     @Query("SELECT * FROM table_memo")
     suspend fun getListData() : List<MemoData>
 

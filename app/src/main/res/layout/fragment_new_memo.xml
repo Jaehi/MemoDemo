@@ -53,7 +53,7 @@
                     android:imeOptions="actionDone"
                     android:padding="10dp"
                     android:afterTextChanged="@{e -> viewmodel.setContents(e.toString)}"
-                    android:textSize="30sp"
+                    android:textSize="24sp"
                     android:textColor="@color/highlight"
                     android:scrollbars="vertical"
                     mode="@{viewmodel.mode}"

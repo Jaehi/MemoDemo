@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.applemango.memodemo.data.MemoData
 import com.applemango.memodemo.databinding.MemoItemBinding
 
-class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title: String, content: String, id: Int) -> Unit,
-                  val onClick: (position : Int) -> Unit
+class MemoAdapter(
+    private val data: List<MemoData>,
+    val onClickDelete: (title: String, content: String, id: Int) -> Unit,
+    val onClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val bind: MemoItemBinding) : RecyclerView.ViewHolder(bind.root) {
@@ -20,7 +22,13 @@ class MemoAdapter(private val data: List<MemoData>, val onClickDelete: (title: S
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(MemoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            MemoItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
