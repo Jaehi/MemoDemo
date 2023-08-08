@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.applemango.memodemo.viewmodel.NewViewModel" />
@@ -17,66 +18,67 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.NewMemoFragment"
-        android:background="@color/background">
+        android:background="@color/background"
+        tools:context=".view.NewMemoFragment">
 
         <EditText
             android:id="@+id/tv_title"
+            mode="@{viewmodel.mode}"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:afterTextChanged="@{e -> viewmodel.setTitle(e.toString)}"
             android:backgroundTint="@color/point"
+            android:gravity="center"
             android:imeOptions="actionNext"
             android:singleLine="true"
-            android:gravity="center"
-            android:afterTextChanged="@{e -> viewmodel.setTitle(e.toString)}"
-            android:textSize="20sp"
-            android:textColor="@color/highlight"
-            mode="@{viewmodel.mode}"
             android:text="@{viewmodel.resultData.title}"
+            android:textColor="@color/highlight"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-                <EditText
-                    android:id="@+id/tv_contents"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="500dp"
-                    android:maxHeight="500dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/memo_border"
-                    android:gravity="top"
-                    android:imeOptions="actionDone"
-                    android:padding="10dp"
-                    android:afterTextChanged="@{e -> viewmodel.setContents(e.toString)}"
-                    android:textSize="24sp"
-                    android:textColor="@color/highlight"
-                    android:scrollbars="vertical"
-                    mode="@{viewmodel.mode}"
-                    android:text="@{viewmodel.resultData.content}"
-                    app:layout_constraintBottom_toTopOf="@+id/bt_save"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
+        <EditText
+            android:id="@+id/tv_contents"
+            mode="@{viewmodel.mode}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:afterTextChanged="@{e -> viewmodel.setContents(e.toString)}"
+            android:background="@drawable/memo_border"
+            android:gravity="top"
+            android:imeOptions="actionDone"
+            android:maxHeight="500dp"
+            android:minHeight="500dp"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:text="@{viewmodel.resultData.content}"
+            android:textColor="@color/highlight"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/bt_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
 
         <Button
-        android:id="@+id/bt_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        mode="@{viewmodel.mode}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_contents"
-        android:background="@color/base"
-        android:textColor="@color/highlight"/>
+            android:id="@+id/bt_save"
+            mode="@{viewmodel.mode}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/base"
+            android:stateListAnimator="@null"
+            android:textColor="@color/highlight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

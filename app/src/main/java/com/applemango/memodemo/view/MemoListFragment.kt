@@ -53,9 +53,7 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
 
             viewModel.memoList.collect {
                 bind.mRecyclerView.adapter = MemoAdapter(
-                    it,
-                    onClickDelete = { title, content, id ->
-                        context?.let { context ->
+                    it, onClickDelete = { title, content, id -> context?.let { context ->
                             MemoDialog(context, deleteMemo = {
                                 viewModel.delete(title, content, id)
                             }).show()
