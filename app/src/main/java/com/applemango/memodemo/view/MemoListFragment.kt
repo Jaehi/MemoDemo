@@ -73,4 +73,9 @@ class MemoListFragment : androidx.fragment.app.Fragment() {
             }
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _bind = null
+    }
 }

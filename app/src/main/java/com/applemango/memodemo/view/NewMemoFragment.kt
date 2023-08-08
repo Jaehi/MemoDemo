@@ -49,11 +49,6 @@ class NewMemoFragment : Fragment() {
         return bind.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _bind = null
-    }
-
     private fun initView() {
         with(bind) {
             lifecycleOwner = this@NewMemoFragment
@@ -75,6 +70,11 @@ class NewMemoFragment : Fragment() {
                 viewModel.modeAction(viewModel.mode.value!!)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _bind = null
     }
 
 }
