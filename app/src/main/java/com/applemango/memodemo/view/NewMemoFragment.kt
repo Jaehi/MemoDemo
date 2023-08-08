@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.applemango.memodemo.R
 import com.applemango.memodemo.databinding.FragmentNewMemoBinding
+import com.applemango.memodemo.dialog.MemoToast
 import com.applemango.memodemo.viewmodel.Mode
 import com.applemango.memodemo.viewmodel.NewViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,10 +61,10 @@ class NewMemoFragment : Fragment() {
             btSave.setOnClickListener{
                 when(viewModel.mode.value){
                     Mode.NEW_MEMO -> {
-                        Toast.makeText(requireContext(),"저장 완료", Toast.LENGTH_SHORT).show()
+                        MemoToast.makeToast(requireContext(),"수정 완료",true).show()
                     }
                     Mode.EDIT_MEMO -> {
-                        Toast.makeText(requireContext(),"수정 완료",Toast.LENGTH_SHORT).show()
+                        MemoToast.makeToast(requireContext(),"수정 완료",false).show()
                     }
                     else -> {
 

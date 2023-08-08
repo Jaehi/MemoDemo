@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/base"
+        app:strokeColor="@null"
+        app:cardCornerRadius="20dp">
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text = "몬스터 울트라 파라다이스"
+                android:textColor="@color/highlight"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:maxWidth="240dp"/>
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+    </androidx.cardview.widget.CardView>
+    
+    
+</layout>
