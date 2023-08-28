@@ -25,7 +25,6 @@ class NewViewModel @Inject constructor(private val repo: MemoRepository) : ViewM
     val mode: StateFlow<Mode?> get() = _mode
 
     private fun insert() {
-
         viewModelScope.launch(Dispatchers.Default) {
             repo.insert(
                 MemoData(

@@ -16,7 +16,6 @@ class MemoRepositoryImpl @Inject constructor(private val memoDao: MemoDao) : Mem
             } catch (e: Exception) {
                 emit(null)
             }
-
         }
     }
 

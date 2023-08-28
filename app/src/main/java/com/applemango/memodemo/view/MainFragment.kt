@@ -25,7 +25,6 @@ class MainFragment : Fragment() {
         bind.fragment = this
 
         return bind.root
-
     }
 
     fun gotoNewMemo() {

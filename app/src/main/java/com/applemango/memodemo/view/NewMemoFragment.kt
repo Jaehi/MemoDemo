@@ -36,13 +36,12 @@ class NewMemoFragment : Fragment() {
 
         _bind = FragmentNewMemoBinding.inflate(inflater, container, false)
 
-        if (args.data == null) {
-            viewModel.changeMode(Mode.NEW_MEMO)
-            viewModel.setData(null)
-
-        } else {
+        if (args.data != null) {
             viewModel.changeMode(Mode.RESULT_MEMO)
             viewModel.setData(args.data!!)
+        } else {
+            viewModel.changeMode(Mode.NEW_MEMO)
+            viewModel.setData(null)
         }
 
         initView()
@@ -63,9 +62,7 @@ class NewMemoFragment : Fragment() {
                         MemoToast.makeToast(requireContext(), "수정 완료", false).show()
                     }
 
-                    else -> {
-
-                    }
+                    else -> {}
                 }
                 viewModel.modeAction(viewModel.mode.value!!)
             }
