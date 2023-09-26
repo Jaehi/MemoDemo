@@ -29,7 +29,8 @@ class NewViewModel @Inject constructor(private val repo: MemoRepository) : ViewM
             repo.insert(
                 MemoData(
                     tempData.value?.title.toString(),
-                    tempData.value?.content.toString()
+                    tempData.value?.content.toString(),
+                    tempData.value?.date.toString()
                 )
             )
         }
@@ -43,6 +44,7 @@ class NewViewModel @Inject constructor(private val repo: MemoRepository) : ViewM
                     MemoData(
                         tempData.value?.title.toString(),
                         tempData.value?.content.toString(),
+                        tempData.value?.date.toString(),
                         resultData.value?.id!!
                     )
                 )
@@ -60,12 +62,12 @@ class NewViewModel @Inject constructor(private val repo: MemoRepository) : ViewM
     fun setData(data: MemoData?) {
         data?.let {
             _resultData.value = data
-            val temp = ResultData(data.title, data.content, data.id)
+            val temp = ResultData(data.title, data.content, data.date,data.id)
             _tempData.value = temp
         }
         if (data == null) {
             _resultData.value = null
-            val temp = ResultData("", "", null)
+            val temp = ResultData("", "", "",null)
             _tempData.value = temp
         }
     }

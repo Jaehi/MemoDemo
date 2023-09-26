@@ -21,14 +21,15 @@ class ListViewModel @Inject constructor(private val repo: MemoRepositoryImpl) : 
             repo.getAllMemo().collect {
                 if (it != null) {
                     _memoList.emit(it)
+                    Log.e("===========","$it")
                 }
             }
         }
     }
 
-    fun delete(title: String, contents: String, id: Int) {
+    fun delete(title: String, contents: String,date : String, id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.delete(MemoData(title, contents, id))
+            repo.delete(MemoData(title, contents, date ,id))
             refreshData()
         }
     }

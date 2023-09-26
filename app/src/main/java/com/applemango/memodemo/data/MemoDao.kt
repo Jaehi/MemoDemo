@@ -11,6 +11,9 @@ interface MemoDao {
     @Query("SELECT * FROM table_memo WHERE id = :id LIMIT 1")
     suspend fun loadNewMemo(id : Int) : MemoData
 
+    @Query("SELECT * FROM table_memo WHERE date = :date")
+    suspend fun loadCalendarMemo(date : String) : List<MemoData>
+
     @Insert
     suspend fun insert(vararg memoData: MemoData)
 

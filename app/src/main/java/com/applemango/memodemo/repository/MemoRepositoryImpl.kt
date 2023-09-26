@@ -28,6 +28,17 @@ class MemoRepositoryImpl @Inject constructor(private val memoDao: MemoDao) : Mem
             }
         }
     }
+    override suspend fun getCalendarMemoList(date : String): Flow<List<MemoData>?> {
+        return flow {
+            try {
+                emit(memoDao.loadCalendarMemo(date))
+            }catch (e : Exception){
+                emit(null)
+            }
+        }
+    }
+
+
 
     override suspend fun update(memo: MemoData) {
         memoDao.update(memo)

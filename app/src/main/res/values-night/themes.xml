@@ -13,4 +13,15 @@
         <item name="android:statusBarColor" >@color/background</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="my_dialog_theme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="android:colorAccent">@color/base</item><!--header background-->
+        <item name="android:windowBackground">@color/background</item>     <!--calendar background-->
+        <item name="android:colorControlActivated">@color/base</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/highlight</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/highlight</item>    <!--days of the week-->
+        <item name="colorControlHighlight">@color/highlight</item>
+        <item name="colorAccent">@color/base</item>
+    </style>
 </resources>

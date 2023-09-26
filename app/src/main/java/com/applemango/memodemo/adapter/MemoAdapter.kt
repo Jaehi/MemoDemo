@@ -8,7 +8,7 @@ import com.applemango.memodemo.databinding.MemoItemBinding
 
 class MemoAdapter(
     private val data: List<MemoData>,
-    val onClickDelete: (title: String, content: String, id: Int) -> Unit,
+    val onClickDelete: (title: String, content: String, id: Int,date : String) -> Unit,
     val onClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
 
@@ -16,7 +16,7 @@ class MemoAdapter(
         fun bindMemo(memo: MemoData) {
             bind.itemTitle.text = memo.title
             bind.btDelete.setOnClickListener {
-                onClickDelete(memo.title, memo.content, memo.id)
+                onClickDelete(memo.title, memo.content, memo.id,memo.date)
             }
         }
     }
